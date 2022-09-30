@@ -90,9 +90,9 @@ const mapDispatchToProps = (dispatch) => {
   return obj;
 };
 
-export default connect(null, mapDispatchToProps)(Login);
-
 Login.propTypes = {
   USER_DATA: PropTypes.func.isRequired,
   history: PropTypes.shape.isRequired,
 };
+
+export default connect(null, mapDispatchToProps)(Login);
