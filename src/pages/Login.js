@@ -51,14 +51,14 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.onSucessForm}>
+        <form onSubmit={ this.onSucessForm }>
           Login
           <label htmlFor="email">
             <input
               id="email"
               type="email"
               data-testid="email-input"
-              onInput={this.onInputChangeFormEmail}
+              onInput={ this.onInputChangeFormEmail }
               placeholder="Email"
             />
           </label>
@@ -67,13 +67,13 @@ class Login extends React.Component {
               id="password"
               type="password"
               data-testid="password-input"
-              onInput={this.onInputChangeFormPassword}
+              onInput={ this.onInputChangeFormPassword }
               placeholder="Senha"
             />
           </label>
           <button
             type="submit"
-            disabled={this.submitButtonForm()}
+            disabled={ this.submitButtonForm() }
           >
             Entrar
           </button>
@@ -83,16 +83,16 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = (action) => {
+const mapDispatchToProps = (dispatch) => {
   const obj = {
-    USER_DATA: (state) => action(ADD_USER(state)),
+    USER_DATA: (state) => dispatch(ADD_USER(state)),
   };
   return obj;
 };
 
-export default connect(null, mapStateToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);
 
 Login.propTypes = {
   USER_DATA: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
+  history: PropTypes.shape.isRequired,
 };
