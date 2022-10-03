@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { ADD_USER } from '../redux/actions';
+import { ADD_USER, FETCH_CURRENCY } from '../redux/actions';
 
 class Login extends React.Component {
   state = {
@@ -74,6 +74,7 @@ class Login extends React.Component {
           <button
             type="submit"
             disabled={ this.submitButtonForm() }
+            onClick={ FETCH_CURRENCY }
           >
             Entrar
           </button>
