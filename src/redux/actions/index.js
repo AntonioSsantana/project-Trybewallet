@@ -1,28 +1,40 @@
-const ADD_USER = (value) => ({ type: 'ADD_USER', value });
+const ADD_USER = (value) => ({
+  type: 'ADD_USER', value,
+});
 
-const ADD_EXPENSE = (value) => ({ type: 'ADD_EXPENSE', value });
+const ADD_EXPENSE = (value) => ({
+  type: 'ADD_EXPENSE', value,
+});
 
-function ADD_CURRENCY(payload) {
-  return { type: 'ADD_CURRENCY', payload };
-}
+export const GET_API = () => {
+  const obj = {
+    type: 'GET_API',
+  };
+  return obj;
+};
 
-function FAIL_REQUEST(error) {
-  return { type: 'FAIL_REQUEST', payload: error };
-}
+export const getCurrencies = (data) => {
+  const obj = {
+    type: 'ADD_CURRENCY',
+    data,
+  };
+  return obj;
+};
 
-function FETCH_CURRENCY() {
+function FetchAPI() {
   return async (dispatch) => {
     try {
+      dispatch(GET_API());
+
       const RESPONSE = await fetch('https://economia.awesomeapi.com.br/json/all');
       const DATA = await RESPONSE.json();
 
       delete DATA.USDT;
-
-      return dispatch(ADD_CURRENCY({ DATA }));
+      dispatch(getCurrencies(Object.keys(DATA)));
     } catch {
-      return dispatch(FAIL_REQUEST('Erro'));
+      console.error(error);
     }
   };
 }
 
-export { ADD_USER, ADD_EXPENSE, FETCH_CURRENCY };
+export { ADD_USER, ADD_EXPENSE, FetchAPI };

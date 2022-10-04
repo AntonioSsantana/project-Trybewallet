@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { FETCH_CURRENCY } from '../redux/actions';
+import { FetchAPI } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -13,8 +13,8 @@ class WalletForm extends Component {
   };
 
   componentDidMount() {
-    const { currencies } = this.props;
-    currencies();
+    const { getCurrencies } = this.props;
+    getCurrencies();
   }
 
   onChangeValue = (event) => {
@@ -48,7 +48,7 @@ class WalletForm extends Component {
     const { valueInput, descriptionInput, currency,
       method, category } = this.state;
 
-    const { currencyOptions } = this.props;
+    const { currencies } = this.props;
 
     return (
       <div>
@@ -77,13 +77,15 @@ class WalletForm extends Component {
             onChange={ this.onChange }
             value={ currency }
           >
-            {currencyOptions.map((i) => (
-              <option
-                key={ i }
-              >
-                {i}
-              </option>
-            ))}
+            {
+              currencies.map((i) => (
+                <option
+                  key={ i }
+                >
+                  {i}
+                </option>
+              ))
+            }
           </select>
         </label>
         <label htmlFor="method">
@@ -118,16 +120,22 @@ class WalletForm extends Component {
 }
 
 WalletForm.propTypes = {
-  currencies: PropTypes.func.isRequired,
-  currencyOptions: PropTypes.arrayOf.isRequired,
+  getCurrencies: PropTypes.func.isRequired,
+  currencies: PropTypes.arrayOf(PropTypes.shape({
+    code: PropTypes.string.isRequired,
+    codein: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    high: PropTypes.string.isRequired,
+    low: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  currencyOptions: state.wallet.currencies,
+const mapDispatchToProps = (dispatch) => ({
+  getCurrencies: () => dispatch(FetchAPI()),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  currencies: () => dispatch(FETCH_CURRENCY()),
+const mapStateToProps = (state) => ({
+  currencies: state.wallet.currencies,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WalletForm);
