@@ -126,7 +126,7 @@ class WalletForm extends Component {
             type="submit"
             onClick={ this.onSaveButton }
           >
-            Adicionar Despesa
+            Adicionar despesa
           </button>
         </label>
       </div>

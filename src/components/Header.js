@@ -39,7 +39,6 @@ class Header extends React.Component {
           {email}
         </span>
         <span data-testid="total-field">
-          Despesa total:
           {
             this.onTotalExpenses()
           }
