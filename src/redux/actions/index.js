@@ -21,7 +21,7 @@ export const getCurrencies = (data) => {
   return obj;
 };
 
-function FetchAPI() {
+function FetchAPI(EXPENSES_DATA) {
   return async (dispatch) => {
     try {
       dispatch(GET_API());
@@ -30,7 +30,14 @@ function FetchAPI() {
       const DATA = await RESPONSE.json();
 
       delete DATA.USDT;
-      dispatch(getCurrencies(Object.keys(DATA)));
+      if (EXPENSES_DATA) {
+        return dispatch(ADD_EXPENSE(
+          {
+            ...EXPENSES_DATA, exchangeRates: DATA,
+          },
+        ));
+      }
+      return dispatch(getCurrencies(Object.keys(DATA)));
     } catch {
       console.error(error);
     }

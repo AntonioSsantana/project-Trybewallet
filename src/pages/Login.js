@@ -74,7 +74,6 @@ class Login extends React.Component {
           <button
             type="submit"
             disabled={ this.submitButtonForm() }
-            u
           >
             Entrar
           </button>

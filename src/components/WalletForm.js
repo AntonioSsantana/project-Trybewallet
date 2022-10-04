@@ -5,11 +5,11 @@ import { FetchAPI } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
-    valueInput: '',
-    descriptionInput: '',
-    currency: 'Moeda',
-    method: 'Método',
-    category: 'Categoria',
+    value: '',
+    description: '',
+    currency: 'USD',
+    method: 'Dinheiro',
+    category: 'Alimentação',
   };
 
   componentDidMount() {
@@ -22,7 +22,7 @@ class WalletForm extends Component {
     const { value } = target;
 
     this.setState({
-      valueInput: value,
+      value,
     });
   };
 
@@ -31,7 +31,7 @@ class WalletForm extends Component {
     const { value } = target;
 
     this.setState({
-      descriptionInput: value,
+      description: value,
     });
   };
 
@@ -44,8 +44,17 @@ class WalletForm extends Component {
     });
   };
 
+  onSaveButton = (event) => {
+    event.preventDefault();
+
+    const { expenses, addExpense } = this.props;
+    const DATA = { id: expenses.length, ...this.state };
+
+    addExpense(DATA);
+  };
+
   render() {
-    const { valueInput, descriptionInput, currency,
+    const { value, description, currency,
       method, category } = this.state;
 
     const { currencies } = this.props;
@@ -58,7 +67,7 @@ class WalletForm extends Component {
             type="number"
             data-testid="value-input"
             onChange={ this.onChangeValue }
-            value={ valueInput }
+            value={ value }
           />
         </label>
         <label htmlFor="description">
@@ -67,7 +76,7 @@ class WalletForm extends Component {
             type="description"
             data-testid="description-input"
             onChange={ this.onChangeDescription }
-            value={ descriptionInput }
+            value={ description }
           />
         </label>
         <label htmlFor="currency">
@@ -113,6 +122,12 @@ class WalletForm extends Component {
             <option>Transporte</option>
             <option>Saúde</option>
           </select>
+          <button
+            type="submit"
+            onClick={ this.onSaveButton }
+          >
+            Adicionar Despesa
+          </button>
         </label>
       </div>
     );
@@ -121,6 +136,8 @@ class WalletForm extends Component {
 
 WalletForm.propTypes = {
   getCurrencies: PropTypes.func.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  addExpense: PropTypes.func.isRequired,
   currencies: PropTypes.arrayOf(PropTypes.shape({
     code: PropTypes.string.isRequired,
     codein: PropTypes.string.isRequired,
@@ -132,10 +149,12 @@ WalletForm.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   getCurrencies: () => dispatch(FetchAPI()),
+  addExpense: (DATA) => dispatch(FetchAPI(DATA)),
 });
 
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
+  expenses: state.wallet.expenses,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WalletForm);
