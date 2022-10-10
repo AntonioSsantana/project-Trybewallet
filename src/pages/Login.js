@@ -54,6 +54,7 @@ class Login extends React.Component {
         <form onSubmit={ this.onSucessForm }>
           Login
           <label htmlFor="email">
+            Email:
             <input
               id="email"
               type="email"
@@ -63,6 +64,7 @@ class Login extends React.Component {
             />
           </label>
           <label htmlFor="password">
+            Senha:
             <input
               id="password"
               type="password"
