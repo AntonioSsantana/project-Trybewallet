@@ -24,25 +24,28 @@ class Header extends React.Component {
         ) => {
           const PRICE$ = Object.values(exchangeRates)
             .filter(({ code }) => code === currency);
-          return acc + parseFloat(PRICE$[0].ask) * value;
+          return (acc + parseFloat(PRICE$[0].ask) * value);
         }, 0) * 100,
       ) / 100
     );
   }
 
   render() {
-    const { email } = this.props;
+    const { email, expenses } = this.props;
+    console.log(expenses);
     return (
       <div>
         <span data-testid="email-field">
           Email:
           {email}
         </span>
+        <br />
         <span data-testid="total-field">
           {
             this.onTotalExpenses()
           }
         </span>
+        <br />
         <span
           data-testid="header-currency-field"
         >

@@ -1,25 +1,16 @@
-const ADD_USER = (value) => ({
-  type: 'ADD_USER', value,
+const ADD_USER = (payload) => ({
+  type: 'ADD_USER', payload,
 });
 
-const ADD_EXPENSE = (value) => ({
-  type: 'ADD_EXPENSE', value,
+const ADD_EXPENSE = (payload) => ({
+  type: 'ADD_EXPENSE', payload,
 });
 
-export const GET_API = () => {
-  const obj = {
-    type: 'GET_API',
-  };
-  return obj;
-};
+export const GET_API = () => ({
+  type: 'GET_API',
+});
 
-export const getCurrencies = (data) => {
-  const obj = {
-    type: 'ADD_CURRENCY',
-    data,
-  };
-  return obj;
-};
+export const getCurrencies = (data) => ({ type: 'ADD_CURRENCY', data });
 
 function FetchAPI(EXPENSES_DATA) {
   return async (dispatch) => {
@@ -30,14 +21,16 @@ function FetchAPI(EXPENSES_DATA) {
       const DATA = await RESPONSE.json();
 
       delete DATA.USDT;
-      if (EXPENSES_DATA) {
-        return dispatch(ADD_EXPENSE(
+      if (EXPENSES_DATA === undefined) {
+        /* return dispatch(ADD_EXPENSE(
           {
             ...EXPENSES_DATA, exchangeRates: DATA,
           },
-        ));
+        )); */
+        return dispatch(getCurrencies(Object.keys(DATA)));
       }
-      return dispatch(getCurrencies(Object.keys(DATA)));
+      /* return dispatch(getCurrencies(Object.keys(DATA))); */
+      return dispatch(ADD_EXPENSE({ ...EXPENSES_DATA, exchangeRates: DATA }));
     } catch {
       console.error(error);
     }

@@ -9,31 +9,13 @@ class WalletForm extends Component {
     description: '',
     currency: 'USD',
     method: 'Dinheiro',
-    category: 'Alimentação',
+    tag: 'Alimentação',
   };
 
   componentDidMount() {
     const { getCurrencies } = this.props;
     getCurrencies();
   }
-
-  onChangeValue = (event) => {
-    const { target } = event;
-    const { value } = target;
-
-    this.setState({
-      value,
-    });
-  };
-
-  onChangeDescription = (event) => {
-    const { target } = event;
-    const { value } = target;
-
-    this.setState({
-      description: value,
-    });
-  };
 
   onChange = (event) => {
     const { target } = event;
@@ -51,22 +33,30 @@ class WalletForm extends Component {
     const DATA = { id: expenses.length, ...this.state };
 
     addExpense(DATA);
+
+    this.setState({
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
+    });
   };
 
   render() {
     const { value, description, currency,
-      method, category } = this.state;
+      method, tag } = this.state;
 
     const { currencies } = this.props;
-
     return (
-      <div>
-        <label htmlFor="number">
+
+      <form onSubmit={ this.onSaveButton }>
+        <label htmlFor="value">
           <input
-            id="number"
+            id="value"
             type="number"
             data-testid="value-input"
-            onChange={ this.onChangeValue }
+            onChange={ this.onChange }
             value={ value }
           />
         </label>
@@ -75,7 +65,7 @@ class WalletForm extends Component {
             id="description"
             type="description"
             data-testid="description-input"
-            onChange={ this.onChangeDescription }
+            onChange={ this.onChange }
             value={ description }
           />
         </label>
@@ -109,12 +99,12 @@ class WalletForm extends Component {
             <option>Cartão de débito</option>
           </select>
         </label>
-        <label htmlFor="category">
+        <label htmlFor="tag">
           <select
-            id="category"
+            id="tag"
             data-testid="tag-input"
             onChange={ this.onChange }
-            value={ category }
+            value={ tag }
           >
             <option>Alimentação</option>
             <option>Lazer</option>
@@ -124,12 +114,11 @@ class WalletForm extends Component {
           </select>
           <button
             type="submit"
-            onClick={ this.onSaveButton }
           >
             Adicionar despesa
           </button>
         </label>
-      </div>
+      </form>
     );
   }
 }
