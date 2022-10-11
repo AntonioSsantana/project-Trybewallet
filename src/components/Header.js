@@ -31,8 +31,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { email, expenses } = this.props;
-    console.log(expenses);
+    const { email } = this.props;
     return (
       <div>
         <span data-testid="email-field">
