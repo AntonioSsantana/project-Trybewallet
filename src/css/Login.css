@@ -6,8 +6,10 @@
 }
 
 .forms-login {
-  background-color: rgb(181, 169, 169);
-  color: #282c34;
+  background-image: url(https://images6.alphacoders.com/912/thumb-1920-912465.jpg);
+  color: #ffffff;
+  text-shadow: 2px 0 rgb(54, 54, 54), -2px 0 rgb(107, 107, 107), 0 2px rgb(145, 145, 145), 0 -2px rgb(129, 129, 129),
+  1px 1px rgb(57, 57, 57), -1px -1px rgb(72, 72, 72), 1px -1px rgb(0, 0, 0), -1px 1px rgb(53, 53, 53);
   border: 2px double rgb(99, 99, 99);
   display: flex;
   flex-direction: column;
@@ -22,12 +24,13 @@
 
 input[type="email"],
 input[type="password"] {
+  background-color: rgb(171, 171, 171);
   color: mix(white, #424242, 70%);
   font-size: 12px;
   padding: 10px 10px 10px 5px;
   display: block;
   width: 320px;
-  border: none;
+  border: 2px double;
   border-radius: 10px;
   border-bottom: 1px solid mix(white, #424242, 70%);
 }
