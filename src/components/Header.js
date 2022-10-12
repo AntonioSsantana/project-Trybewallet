@@ -15,7 +15,7 @@ class Header extends React.Component {
     const { expenses } = this.props;
 
     return (
-      (expenses.length === 0) ? 0 : Math.floor(
+      (expenses.length === 0) ? '0.00' : Math.floor(
         expenses.reduce((
           acc,
           { value,
@@ -25,7 +25,7 @@ class Header extends React.Component {
           const PRICE$ = Object.values(exchangeRates)
             .filter(({ code }) => code === currency);
           return (acc + parseFloat(PRICE$[0].ask) * value);
-        }, 0) * 100,
+        }, 0.00) * 100,
       ) / 100
     );
   }

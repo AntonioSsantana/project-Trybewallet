@@ -12,6 +12,8 @@ export const GET_API = () => ({
 
 export const getCurrencies = (data) => ({ type: 'ADD_CURRENCY', data });
 
+export const EXPENSE_DELETE = (expense) => ({ type: 'DELETE_EXPENSE', expense });
+
 function FetchAPI(EXPENSES_DATA) {
   return async (dispatch) => {
     try {
