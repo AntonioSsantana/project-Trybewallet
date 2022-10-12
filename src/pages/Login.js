@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { ADD_USER } from '../redux/actions';
+import '../css/Global.css';
+import '../css/Login.css';
 
 class Login extends React.Component {
   state = {
@@ -50,9 +52,13 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={ this.onSucessForm }>
-          Login
+      <div className="div-login">
+        <h1>TrybeWallet</h1>
+        <form
+          className="forms-login"
+          onSubmit={ this.onSucessForm }
+        >
+          <h2>Login</h2>
           <label htmlFor="email">
             Email:
             <input
@@ -60,7 +66,6 @@ class Login extends React.Component {
               type="email"
               data-testid="email-input"
               onInput={ this.onInputChangeFormEmail }
-              placeholder="Email"
             />
           </label>
           <label htmlFor="password">
@@ -70,7 +75,6 @@ class Login extends React.Component {
               type="password"
               data-testid="password-input"
               onInput={ this.onInputChangeFormPassword }
-              placeholder="Senha"
             />
           </label>
           <button

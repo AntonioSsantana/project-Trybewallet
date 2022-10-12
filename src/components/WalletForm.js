@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FetchAPI } from '../redux/actions';
+import '../css/Global.css';
 
 class WalletForm extends Component {
   state = {
