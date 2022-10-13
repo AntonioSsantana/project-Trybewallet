@@ -49,9 +49,9 @@ class WalletForm extends Component {
 
     const { currencies } = this.props;
     return (
-
-      <form onSubmit={ this.onSaveButton }>
+      <form className="div-form-wallet" onSubmit={ this.onSaveButton }>
         <label htmlFor="value">
+          Valor:
           <input
             id="value"
             type="number"
@@ -61,6 +61,7 @@ class WalletForm extends Component {
           />
         </label>
         <label htmlFor="description">
+          Descrição
           <input
             id="description"
             type="description"
@@ -70,6 +71,7 @@ class WalletForm extends Component {
           />
         </label>
         <label htmlFor="currency">
+          Moeda:
           <select
             id="currency"
             data-testid="currency-input"
@@ -88,6 +90,7 @@ class WalletForm extends Component {
           </select>
         </label>
         <label htmlFor="method">
+          Método:
           <select
             id="method"
             data-testid="method-input"
@@ -100,6 +103,7 @@ class WalletForm extends Component {
           </select>
         </label>
         <label htmlFor="tag">
+          Tipo:
           <select
             id="tag"
             data-testid="tag-input"

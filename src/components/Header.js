@@ -33,22 +33,21 @@ class Header extends React.Component {
   render() {
     const { email } = this.props;
     return (
-      <div>
+      <div className="div-header">
         <span data-testid="email-field">
           Email:
           {email}
         </span>
-        <br />
         <span data-testid="total-field">
           {
             this.onTotalExpenses()
           }
+          R$
         </span>
-        <br />
         <span
           data-testid="header-currency-field"
         >
-          BRL
+          Conversão para: BRL
         </span>
       </div>
     );
