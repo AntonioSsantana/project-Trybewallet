@@ -7,9 +7,15 @@
 
 .forms-login {
   background-image: url(https://images6.alphacoders.com/912/thumb-1920-912465.jpg);
-  color: #ffffff;
-  text-shadow: 2px 0 rgb(54, 54, 54), -2px 0 rgb(107, 107, 107), 0 2px rgb(145, 145, 145), 0 -2px rgb(129, 129, 129),
-  1px 1px rgb(57, 57, 57), -1px -1px rgb(72, 72, 72), 1px -1px rgb(0, 0, 0), -1px 1px rgb(53, 53, 53);
+  color: #000000;
+  text-shadow: 0 0 7px rgb(123, 153, 188),
+  0 0 10px rgb(123, 153, 188),
+  0 0 21px rgb(123, 153, 188),
+  0 0 42px rgb(123, 153, 188),
+  0 0 82px rgb(123, 153, 188),
+  0 0 92px rgb(123, 153, 188),
+  0 0 102px rgb(123, 153, 188),
+  0 0 151px rgb(123, 153, 188);
   border: 2px double rgb(99, 99, 99);
   display: flex;
   flex-direction: column;
